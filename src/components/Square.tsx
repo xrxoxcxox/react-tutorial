@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { ISquare } from '../interface';
 
 interface SquareProps {
@@ -5,10 +6,10 @@ interface SquareProps {
   onClick: () => void;
 }
 
-function Square(props: SquareProps) {
+const Square: FC<SquareProps> = ({ value, onClick}) => {
   return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
+    <button className="square" onClick={onClick}>
+      {value}
     </button>
   );
 }

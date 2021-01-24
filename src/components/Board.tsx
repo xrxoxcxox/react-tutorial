@@ -1,17 +1,18 @@
+import { FC } from 'react'
 import { ISquare } from '../interface';
-import Square from './Square'
+import Square from './Square';
 
 interface BoardProps {
     squares: ISquare[];
     onClick: (i: number) => void;
 }
 
-function Board(props: BoardProps) {
+const Board: FC<BoardProps> = ({ squares, onClick}) => {
   const renderSquare = (i: number) => {
     return (
       <Square
-        value={props.squares[i]}
-        onClick={() => props.onClick(i)}
+        value={squares[i]}
+        onClick={() => onClick(i)}
       />
     );
   }
