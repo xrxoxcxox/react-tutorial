@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { ISquare, History } from '../interface';
 import Board from './Board';
+import Moves from './Moves';
 
 const Game: FC = () => {
   const [history, setHistory] = useState<History[]>([{ squares: Array(9).fill(null) }]);
@@ -26,14 +27,7 @@ const Game: FC = () => {
 
   const current = history[stepNumber];
   const winner = calculateWinner(current.squares);
-  const moves = history.map((step, move) => {
-    const desc = move ? "Go to move #" + move : "Go to game start";
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
-      </li>
-    );
-  });
+
   let status;
   if (winner) {
     status = "Winner: " + winner;
@@ -51,7 +45,7 @@ const Game: FC = () => {
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>{moves}</ol>
+        <Moves history={history} jumpTo={jumpTo}></Moves>
       </div>
     </div>
   );
